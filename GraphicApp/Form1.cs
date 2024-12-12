@@ -4,7 +4,7 @@ using System.IO;
 using System.Text;
 using System.Windows.Forms;
 using CefSharp;
-using CefSharp.WinForms;
+using CefSharp.WinForms; //instalacja przez NuGet Package Manager (używany do pracy z połączeniem przeglądarki)
 
 namespace GraphicApp
 {
@@ -13,9 +13,9 @@ namespace GraphicApp
         public Form1()
         {
             InitializeComponent();
-            SetSize();
-            Cef.Initialize(new CefSettings());
-            InitializeBrowser();
+            SetSize(); //rozmiar płótna
+            Cef.Initialize(new CefSettings());//połączenie przeglądarki
+            InitializeBrowser(); 
         }
 
         private void InitializeBrowser()
@@ -35,6 +35,7 @@ namespace GraphicApp
             this.Controls.Add(browserPanel);
         }
 
+        //Clasa przechowuje punkty używane do rysowania linii:
         private class ArrayPoints
         {
             private int index = 0;
@@ -49,11 +50,11 @@ namespace GraphicApp
                 points = new Point[size];
             }
 
-            public void SetPoint(int x, int y)
+            public void SetPoint(int x, int y) //dodaje nowe pointy (kropki) w tablicę
             {
                 if (index >= points.Length)
                 {
-                    index = 0;
+                    index = 0; //jeżeli tablica full - zapisujemy pointy od początku
                 }
                 points[index] = new Point(x, y);
                 index++;
@@ -61,12 +62,12 @@ namespace GraphicApp
 
             public void ResetPoints()
             {
-                index = 0;
+                index = 0; //resetuje indeks
             }
 
             public int GetCountPoints()
             {
-                return index;
+                return index; //ilośc ounktów dodanych do tablicy
             }
 
             public Point[] GetPoints()
@@ -83,6 +84,8 @@ namespace GraphicApp
 
         Pen pen = new Pen(Color.Black, 3f);
 
+
+        //Dostosowuje rozmiary płótna w zależności od rozdzielczości ekranu.
         private void SetSize()
         {
             Rectangle rectangle = Screen.PrimaryScreen.Bounds;
@@ -91,7 +94,6 @@ namespace GraphicApp
 
             pen.StartCap = System.Drawing.Drawing2D.LineCap.Round;
             pen.EndCap = System.Drawing.Drawing2D.LineCap.Round;
-
         }
         private void button3_Click(object sender, EventArgs e)
         {
@@ -125,7 +127,7 @@ namespace GraphicApp
             }
         }
 
-        private void button10_Click(object sender, EventArgs e)
+        private void button10_Click(object sender, EventArgs e) //paleta
         {
             if (colorDialog1.ShowDialog() == DialogResult.OK)
             {
@@ -140,7 +142,7 @@ namespace GraphicApp
             pictureBox1.Image = map;
         }
 
-        private void trackBar1_ValueChanged(object sender, EventArgs e)
+        private void trackBar1_ValueChanged(object sender, EventArgs e) //grubość pędzla
         {
             pen.Width = trackBar1.Value;
         }
@@ -154,7 +156,7 @@ namespace GraphicApp
             else
             {
                 MessageBox.Show("Please enter a valid numeric key for encryption/decryption.", "Input error");
-                throw new Exception("Incorrect encryption key."); // Остановка выполнения в случае ошибки
+                throw new Exception("Incorrect encryption key."); 
             }
         }
 
@@ -172,7 +174,7 @@ namespace GraphicApp
                         imageBytes = ms.ToArray();
                     }
 
-                    int key = GetCaesarKey(); // Получаем ключ из текстового поля
+                    int key = GetCaesarKey();
                     byte[] encryptedData = EncryptCaesar(imageBytes, key);
                     File.WriteAllBytes(saveFileDialog1.FileName, encryptedData);
 
@@ -186,6 +188,7 @@ namespace GraphicApp
         }
 
 
+        //Szyfrowanie obrazu: przesuwa każdy bajt o określoną liczbę pozycji.
         private byte[] EncryptCaesar(byte[] data, int key)
         {
             byte[] result = new byte[data.Length];
@@ -215,7 +218,7 @@ namespace GraphicApp
                 {
                     byte[] encryptedData = File.ReadAllBytes(openFileDialog1.FileName);
 
-                    int key = int.Parse(txtCaesarKey.Text); // Получаем ключ из текстового поля
+                    int key = int.Parse(txtCaesarKey.Text); 
                     byte[] decryptedData = DecryptCaesar(encryptedData, key);
 
                     using (MemoryStream ms = new MemoryStream(decryptedData))
@@ -223,6 +226,7 @@ namespace GraphicApp
                         Bitmap decryptedImage = new Bitmap(ms);
                         pictureBox1.Image = decryptedImage;
                         graphics = Graphics.FromImage(decryptedImage);
+                        map = decryptedImage;
                     }
 
                     MessageBox.Show("The file was opened and decrypted successfully.", "Success");
@@ -233,6 +237,11 @@ namespace GraphicApp
                 }
             }
         }
-        
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            graphics.Clear(pictureBox1.BackColor);
+            pictureBox1.Image = map;
+        }
     }
 }

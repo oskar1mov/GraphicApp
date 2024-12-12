@@ -51,11 +51,14 @@
             this.button12 = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.label2 = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.button13 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.panel3.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -73,7 +76,7 @@
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.button1.Location = new System.Drawing.Point(3, 442);
+            this.button1.Location = new System.Drawing.Point(3, 55);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(98, 35);
             this.button1.TabIndex = 1;
@@ -84,7 +87,7 @@
             // button2
             // 
             this.button2.BackColor = System.Drawing.Color.Silver;
-            this.button2.Location = new System.Drawing.Point(44, 483);
+            this.button2.Location = new System.Drawing.Point(506, 436);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(130, 39);
             this.button2.TabIndex = 2;
@@ -251,12 +254,8 @@
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.label2);
-            this.panel3.Controls.Add(this.button12);
-            this.panel3.Controls.Add(this.txtCaesarKey);
-            this.panel3.Controls.Add(this.button1);
             this.panel3.Controls.Add(this.panel2);
-            this.panel3.Controls.Add(this.button2);
+            this.panel3.Controls.Add(this.panel4);
             this.panel3.Controls.Add(this.panel1);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel3.Location = new System.Drawing.Point(932, 0);
@@ -266,7 +265,7 @@
             // 
             // txtCaesarKey
             // 
-            this.txtCaesarKey.Location = new System.Drawing.Point(104, 407);
+            this.txtCaesarKey.Location = new System.Drawing.Point(106, 19);
             this.txtCaesarKey.Name = "txtCaesarKey";
             this.txtCaesarKey.Size = new System.Drawing.Size(100, 20);
             this.txtCaesarKey.TabIndex = 5;
@@ -274,7 +273,7 @@
             // button12
             // 
             this.button12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.button12.Location = new System.Drawing.Point(106, 442);
+            this.button12.Location = new System.Drawing.Point(106, 55);
             this.button12.Name = "button12";
             this.button12.Size = new System.Drawing.Size(98, 35);
             this.button12.TabIndex = 6;
@@ -289,11 +288,35 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(7, 410);
+            this.label2.Location = new System.Drawing.Point(6, 22);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(94, 13);
             this.label2.TabIndex = 7;
             this.label2.Text = "Klucz szyfrowania:";
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.button13);
+            this.panel4.Controls.Add(this.button12);
+            this.panel4.Controls.Add(this.label2);
+            this.panel4.Controls.Add(this.txtCaesarKey);
+            this.panel4.Controls.Add(this.button1);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel4.Location = new System.Drawing.Point(0, 404);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(207, 168);
+            this.panel4.TabIndex = 8;
+            // 
+            // button13
+            // 
+            this.button13.BackColor = System.Drawing.Color.Silver;
+            this.button13.Location = new System.Drawing.Point(37, 96);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(128, 33);
+            this.button13.TabIndex = 6;
+            this.button13.Text = "Clear";
+            this.button13.UseVisualStyleBackColor = false;
+            this.button13.Click += new System.EventHandler(this.button13_Click);
             // 
             // Form1
             // 
@@ -302,6 +325,7 @@
             this.ClientSize = new System.Drawing.Size(1139, 572);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.button2);
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -310,7 +334,8 @@
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -340,6 +365,8 @@
         private System.Windows.Forms.Button button12;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Button button13;
     }
 }
 
